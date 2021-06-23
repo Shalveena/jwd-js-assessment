@@ -125,12 +125,17 @@ window.addEventListener("DOMContentLoaded", () => {
     window.location.reload();
   });
 
+  // set counter (for the purposes of our timer)
+  let counter;
+
   // Function to calculate the score
   const submitQuiz = () => {
     const score = calculateScore();
     //and display it in the span element
     const spanEl = document.querySelector("#score");
     spanEl.innerHTML = `Your total score is ${score}`;
+    //clear counter (to stop the timer)
+    clearInterval(counter);
   };
 
   // Submit button calculates the score
@@ -140,21 +145,15 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   //Countdown timer
-  let counter;
-
   window.onload = () => {
     let sec = 60;
     counter = setInterval(() => {
       const timeElement = document.querySelector("#time");
       timeElement.innerHTML = `0 : ${sec}`;
       sec--;
-      // when it gets to 0, it submits the quiz and displays the score and highlights the correct answers
-      if (sec === 0) {
-        submitQuiz();
-      }
-      // also clears the interval (so it does not go to -1 etc)
+      // when it gets to 0, it submits the quiz, displays the score and highlights the correct answers. It also clears the timer ((so it does not go to -1 etc))
       if (sec < 0) {
-        clearInterval(counter);
+        submitQuiz();
       }
     }, 1000);
   };
