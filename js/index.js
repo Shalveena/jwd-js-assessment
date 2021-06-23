@@ -139,17 +139,32 @@ window.addEventListener("DOMContentLoaded", () => {
     submitQuiz();
   });
 
-  // Timer - when time is up, end quiz, display score and highlight correct answers
+  //Countdown timer
+  let counter;
+
+  window.onload = () => {
+    let sec = 60;
+    counter = setInterval(() => {
+      const timeElement = document.querySelector("#time");
+      timeElement.innerHTML = `0 : ${sec}`;
+      sec--;
+      if (sec === 0) {
+        submitQuiz();
+      }
+      if (sec < 0) {
+        clearInterval(counter);
+      }
+    }, 1000);
+  };
+
+  // let sec;
+  // let counter;
 
   // window.onload = () => {
-  //   const sec = 60;
-  //   setInterval(() => {
-  //     const timeElement = document.querySelector("#time");
-  //     timeElement.innerHTML = `0 : ${sec}`;
-  //     sec--;
-  //     if (sec === 0) {
-  //       submitQuiz();
-  //     }
-  //   }, 1000);
-  // };
+  //   sec = 60;
+  //   counter = setInterval(timer, 1000)
+  //   timer = () => {
+
+  //   }
+  // }
 });
