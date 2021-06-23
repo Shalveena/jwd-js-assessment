@@ -148,23 +148,14 @@ window.addEventListener("DOMContentLoaded", () => {
       const timeElement = document.querySelector("#time");
       timeElement.innerHTML = `0 : ${sec}`;
       sec--;
+      // when it gets to 0, it submits the quiz and displays the score and highlights the correct answers
       if (sec === 0) {
         submitQuiz();
       }
+      // also clears the interval (so it does not go to -1 etc)
       if (sec < 0) {
         clearInterval(counter);
       }
     }, 1000);
   };
-
-  // let sec;
-  // let counter;
-
-  // window.onload = () => {
-  //   sec = 60;
-  //   counter = setInterval(timer, 1000)
-  //   timer = () => {
-
-  //   }
-  // }
 });
